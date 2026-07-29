@@ -1,51 +1,86 @@
-import type { Metadata } from "next"
-import { Poppins } from "next/font/google"
+import type { Metadata, Viewport } from "next"
+import { Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 
-const poppins = Poppins({ 
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-poppins",
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-inter",
 })
 
+const SITE_URL = "https://www.aldidiscounts.com"
+const SITE_NAME = "ALDI Discounts"
+const TITLE = "The ALDI Discounts They Don't Advertise"
+const DESCRIPTION =
+  "Discover how shoppers are unlocking hidden discount codes on fresh produce, pantry staples, ALDI Finds, and household essentials. Complete 5+ deals in five simple steps and get your discount delivered straight to your inbox."
+
 export const metadata: Metadata = {
-  title: "Aldi Method",
-  description: "Discover how people are unlocking up to $750 in Aldi rewards. Complete simple steps and claim your gift card today.",
-  generator: "v0.app",
-  icons: {
-    icon: [
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon-192x192.png", sizes: "192x192", type: "image/png" },
-      { url: "/favicon-512x512.png", sizes: "512x512", type: "image/png" },
-    ],
-    shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+  metadataBase: new URL(SITE_URL),
+  title: TITLE,
+  description: DESCRIPTION,
+  applicationName: SITE_NAME,
+  keywords: [
+    "ALDI discount code",
+    "ALDI promo code",
+    "ALDI discounts",
+    "ALDI grocery deals",
+    "ALDI rewards program",
+    "fresh produce and meat deals",
+    "pantry and snack deals",
+    "ALDI Finds and seasonal deals",
+    "household and baby deals",
+  ],
+  authors: [{ name: SITE_NAME, url: SITE_URL }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
+  category: "shopping",
+  alternates: {
+    canonical: "/",
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  generator: "v0.app",
   openGraph: {
     type: "website",
-    title: "Aldi Method",
-    description: "Unlock up to $750 in Aldi rewards with a simple process.",
-    siteName: "Aldi Method",
+    url: SITE_URL,
+    title: TITLE,
+    description: DESCRIPTION,
+    siteName: SITE_NAME,
+    locale: "en_US",
     images: [
       {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Aldi Rewards",
+        url: "/og-image.png",
+        width: 1024,
+        height: 1024,
+        alt: "Broccoli, red apples, carrots and lettuce beside a steak on butcher paper, a coffee bag with a cereal box, pasta sauce and chips, a ribboned gift box with a mug and folded orange blanket, and paper towel rolls with a spray cleaner, diapers and wipes floating on a deep royal blue background",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Aldi Method",
-    description: "Unlock up to $750 in Aldi rewards with a simple process.",
-    images: ["/og-image.jpg"],
+    title: TITLE,
+    description: DESCRIPTION,
+    images: ["/og-image.png"],
   },
   other: {
-    "apple-mobile-web-app-title": "Aldi Method",
+    "apple-mobile-web-app-title": SITE_NAME,
   },
+}
+
+export const viewport: Viewport = {
+  themeColor: "#0B4EA2",
+  colorScheme: "light",
+  width: "device-width",
+  initialScale: 1,
 }
 
 export default function RootLayout({
@@ -54,8 +89,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className={`${poppins.variable} font-sans antialiased`}>
+    <html lang="en" className="bg-white">
+      <body className={`${inter.variable} font-sans antialiased`}>
         {children}
         <Analytics />
       </body>
