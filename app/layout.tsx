@@ -13,7 +13,7 @@ const SITE_URL = "https://www.aldidiscounts.com"
 const SITE_NAME = "ALDI Discounts"
 const TITLE = "The ALDI Discounts They Don't Advertise"
 const DESCRIPTION =
-  "Discover how shoppers are unlocking hidden discount codes on fresh produce, pantry staples, ALDI Finds, and household essentials. Complete 5+ deals in five simple steps and get your discount delivered straight to your inbox."
+  "Discover how shoppers are unlocking hidden ALDI discounts this Thanksgiving — on turkey and dinner groceries, pies and baking staples, fresh produce, and ALDI Finds. Complete 5+ deals in five simple steps and get your discount delivered straight to your inbox."
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -22,14 +22,17 @@ export const metadata: Metadata = {
   applicationName: SITE_NAME,
   keywords: [
     "ALDI discount code",
+    "ALDI coupon",
     "ALDI promo code",
-    "ALDI discounts",
-    "ALDI grocery deals",
-    "ALDI rewards program",
-    "fresh produce and meat deals",
-    "pantry and snack deals",
-    "ALDI Finds and seasonal deals",
-    "household and baby deals",
+    "ALDI Thanksgiving",
+    "ALDI Thanksgiving deals",
+    "ALDI turkey",
+    "ALDI Thanksgiving dinner",
+    "ALDI pies",
+    "ALDI holiday baking",
+    "ALDI produce",
+    "ALDI Finds",
+    "ALDI grocery savings",
   ],
   authors: [{ name: SITE_NAME, url: SITE_URL }],
   creator: SITE_NAME,
@@ -49,6 +52,14 @@ export const metadata: Metadata = {
     },
   },
   generator: "v0.app",
+  icons: {
+    icon: [
+      { url: "/icon-light-32x32.png", media: "(prefers-color-scheme: light)" },
+      { url: "/icon-dark-32x32.png", media: "(prefers-color-scheme: dark)" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/apple-icon.png",
+  },
   openGraph: {
     type: "website",
     url: SITE_URL,
@@ -59,9 +70,9 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/og-image.png",
-        width: 1024,
-        height: 1024,
-        alt: "Broccoli, red apples, carrots and lettuce beside a steak on butcher paper, a coffee bag with a cereal box, pasta sauce and chips, a ribboned gift box with a mug and folded orange blanket, and paper towel rolls with a spray cleaner, diapers and wipes floating on a deep royal blue background",
+        width: 1376,
+        height: 768,
+        alt: "Thanksgiving grocery flat-lay of a whole turkey, pumpkin pie, cranberries, sweet potatoes, green beans, small pumpkins, flour, and a grocery tote with autumn leaves on a navy blue surface",
       },
     ],
   },
@@ -77,7 +88,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#0B4EA2",
+  themeColor: "#00205B",
   colorScheme: "light",
   width: "device-width",
   initialScale: 1,
@@ -92,7 +103,7 @@ export default function RootLayout({
     <html lang="en" className="bg-white">
       <body className={`${inter.variable} font-sans antialiased`}>
         {children}
-        <Analytics />
+        {process.env.NODE_ENV === "production" && <Analytics />}
       </body>
     </html>
   )
